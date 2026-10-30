@@ -2,7 +2,7 @@
 
 A PowerToys Run plugin that opens recent local Zed Stable projects on Windows x64. It reads Zed's SQLite history read-only and keeps no background process.
 
-[中文说明](README_CN.md) · [Implementation](documents/implementation.md) · [Verification](documents/verification.md)
+[中文说明](README_CN.md)
 
 ## Requirements
 

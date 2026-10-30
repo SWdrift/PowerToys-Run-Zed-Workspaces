@@ -2,7 +2,7 @@
 
 一个 PowerToys Run 插件，用来打开 Windows x64 上 Zed Stable 的最近本地项目。只读 Zed 的 SQLite 历史，不常驻后台。
 
-[English](README.md) · [实现细节](documents/implementation.md) · [验证记录](documents/verification.md)
+[English](README.md)
 
 ## 环境要求
 
