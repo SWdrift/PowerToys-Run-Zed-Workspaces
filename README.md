@@ -1,4 +1,4 @@
-# Zed Workspaces
+# PowerToys Run Zed Workspaces
 
 A PowerToys Run plugin that opens recent local Zed Stable projects on Windows x64. It reads Zed's SQLite history read-only and keeps no background process.
 

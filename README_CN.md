@@ -1,4 +1,4 @@
-# Zed Workspaces
+# PowerToys Run Zed Workspaces
 
 一个 PowerToys Run 插件，用来打开 Windows x64 上 Zed Stable 的最近本地项目。只读 Zed 的 SQLite 历史，不常驻后台。
 
