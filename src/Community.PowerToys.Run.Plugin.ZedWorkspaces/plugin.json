@@ -1,0 +1,13 @@
+{
+  "ID": "C47048261CB441C0AE406693557896EA",
+  "Disabled": false,
+  "ActionKeyword": "z",
+  "Name": "Zed Workspaces",
+  "Author": "Community",
+  "Version": "1.0.0",
+  "Language": "csharp",
+  "ExecuteFileName": "Community.PowerToys.Run.Plugin.ZedWorkspaces.dll",
+  "IsGlobal": false,
+  "IcoPathDark": "Images\\workspace.png",
+  "IcoPathLight": "Images\\workspace.png"
+}
