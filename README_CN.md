@@ -44,10 +44,10 @@ dotnet test ./tests/ZedWorkspaces.Tests/ZedWorkspaces.Tests.csproj -c Release
 
 ## 限制
 
-仅支持本地 Zed Stable，不支持 Preview/Dev、WSL、SSH、远程项目和自定义用户数据目录。数据库布局与 Zed 的 `WorkspaceDb` 迁移 41 绑定；遇到未知 Schema 时返回空结果并记录诊断，存储契约和故障处理见[实现细节](documents/implementation.md)。
+仅支持本地 Zed Stable。数据库布局与 Zed 的 `WorkspaceDb` 迁移 41 绑定；遇到未知 Schema 时返回空结果并记录诊断，存储契约和故障处理见[实现细节](documents/implementation.md)。
 
 插件错误与诊断写入 PowerToys Run 的常规日志：`%LOCALAPPDATA%\Microsoft\PowerToys\PowerToys Run\Logs`。
 
 ## 许可证
 
-MIT。右键菜单的交互方式沿用 Microsoft 以 MIT 许可发布的 VS Code Workspaces 插件。详见 `LICENSE`。
+MIT，详见 `LICENSE`。

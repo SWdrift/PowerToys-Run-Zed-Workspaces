@@ -44,10 +44,10 @@ Results refresh on query at most once every two seconds, so no restart is needed
 
 ## Limits
 
-Local Zed Stable only. Preview/Dev, WSL, SSH, remote projects and custom user-data directories are not supported. The database layout is tied to Zed `WorkspaceDb` migration 41; an unknown schema yields no results and a diagnostic instead of guessed data. See [implementation notes](documents/implementation.md) for the storage contract and failure handling.
+Local Zed Stable only. The database layout is tied to Zed `WorkspaceDb` migration 41; an unknown schema yields no results and a diagnostic instead of guessed data. See [implementation notes](documents/implementation.md) for the storage contract and failure handling.
 
 Plugin errors and diagnostics go to the normal PowerToys Run logs under `%LOCALAPPDATA%\Microsoft\PowerToys\PowerToys Run\Logs`.
 
 ## License
 
-MIT. The context-menu pattern follows Microsoft's MIT-licensed VS Code Workspaces plugin. See `LICENSE`.
+MIT. See `LICENSE`.
