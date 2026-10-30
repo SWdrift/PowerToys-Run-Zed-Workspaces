@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using ManagedCommon;
 using Wox.Infrastructure;
 using Wox.Plugin;
 using Wox.Plugin.Logger;
@@ -16,7 +17,6 @@ namespace Community.PowerToys.Run.Plugin.ZedWorkspaces;
 
 public sealed class Main : IPlugin, IContextMenu
 {
-    private const string IconPath = "Images\\workspace.png";
     private readonly ZedWorkspacesApi _workspacesApi = new(diagnostic: LogDiagnostic);
     private PluginInitContext? _context;
 
@@ -40,6 +40,10 @@ public sealed class Main : IPlugin, IContextMenu
         }
 
         var matches = ZedWorkspacesApi.Search(_workspacesApi.GetWorkspaces(), query.Search);
+        var theme = _context?.API.GetCurrentTheme() ?? Theme.Light;
+        var iconPath = theme is Theme.Light or Theme.HighContrastWhite
+            ? "Images\\workspace.light.png"
+            : "Images\\workspace.dark.png";
         var results = new List<Result>(matches.Count);
         var score = matches.Count;
         foreach (var workspace in matches)
@@ -48,7 +52,7 @@ public sealed class Main : IPlugin, IContextMenu
             {
                 Title = workspace.Name,
                 SubTitle = workspace.DisplayPath,
-                IcoPath = IconPath,
+                IcoPath = iconPath,
                 ToolTipData = new ToolTipData(workspace.Name, string.Join(Environment.NewLine, workspace.Roots)),
                 ContextData = workspace,
                 Score = score--,

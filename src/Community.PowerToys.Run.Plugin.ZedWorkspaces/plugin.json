@@ -8,6 +8,6 @@
   "Language": "csharp",
   "ExecuteFileName": "Community.PowerToys.Run.Plugin.ZedWorkspaces.dll",
   "IsGlobal": false,
-  "IcoPathDark": "Images\\workspace.png",
-  "IcoPathLight": "Images\\workspace.png"
+  "IcoPathDark": "Images\\workspace.dark.png",
+  "IcoPathLight": "Images\\workspace.light.png"
 }

@@ -18,6 +18,7 @@
   <ItemGroup>
     <Reference Include="Wox.Plugin"><HintPath>$(PowerToysDirectory)\Wox.Plugin.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Wox.Infrastructure"><HintPath>$(PowerToysDirectory)\Wox.Infrastructure.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PowerToys.ManagedCommon"><HintPath>$(PowerToysDirectory)\PowerToys.ManagedCommon.dll</HintPath><Private>false</Private></Reference>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.11" />
     <None Update="plugin.json" CopyToOutputDirectory="PreserveNewest" />
     <None Update="Images\*.png" CopyToOutputDirectory="PreserveNewest" />
