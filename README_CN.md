@@ -44,7 +44,7 @@ dotnet test ./tests/ZedWorkspaces.Tests/ZedWorkspaces.Tests.csproj -c Release
 
 ## 限制
 
-仅支持本地 Zed Stable。数据库布局与 Zed 的 `WorkspaceDb` 迁移 41 绑定；遇到未知 Schema 时返回空结果并记录诊断，存储契约和故障处理见[实现细节](documents/implementation.md)。
+仅支持本地 Zed Stable。数据库布局与 Zed 的 `WorkspaceDb` 迁移 44 绑定（兼容 41–44）；遇到未知 Schema 时返回空结果并记录诊断，存储契约和故障处理见[实现细节](documents/implementation.md)。
 
 插件错误与诊断写入 PowerToys Run 的常规日志：`%LOCALAPPDATA%\Microsoft\PowerToys\PowerToys Run\Logs`。
 

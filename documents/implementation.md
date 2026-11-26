@@ -22,10 +22,11 @@
 %LOCALAPPDATA%\Zed\db\0-stable\db.sqlite
 ```
 
-以 Zed 提交 `c4273271092b0287f7d181f616bd5171e0a2f70c`（Stable 1.26.2）核实：
+以 Zed Stable 1.30.2（提交 `610ea4b8de1c6e887f03563f067278002f41256e`）核实：
 
 - `PRAGMA user_version = 0`。
-- `migrations(domain TEXT, step INTEGER, migration TEXT)` 中 `WorkspaceDb` 的最大 step 为 **41**。
+- `migrations(domain TEXT, step INTEGER, migration TEXT)` 中 `WorkspaceDb` 的最大 step 为 **44**。
+- 42 为 `workspaces` 增加 `path_style`，43/44 增加 `restricted_worktrees`、`trusted_worktrees_2`；被读取的列未变，因此插件接受 41–44。
 - `workspaces`：
   - `workspace_id INTEGER PRIMARY KEY`
   - `paths TEXT`、`paths_order TEXT`
@@ -43,7 +44,7 @@
 读取前同时验证：
 
 1. `user_version` 必须为 0。
-2. `WorkspaceDb` 迁移 step 必须等于 41（更新或更旧都拒绝）。
+2. `WorkspaceDb` 迁移 step 必须在 41–44 内（更旧或更新都拒绝）。
 3. `migrations` 和 `workspaces` 的列名及 SQLite 声明类型符合预期，`workspace_id` 必须是主键。
 
 任一项不满足就返回空结果并记录诊断。数据库缺失、被占用、无法打开或读取异常也走同一路径。已缓存的旧结果会在下一次刷新时被替换，避免 Schema 变化后继续展示过期数据。
@@ -130,7 +131,7 @@ Zed 的 CLI 接受多个位置路径，`ArgumentList` 负责转义，因此空�
 
 ## 已知限制
 
-- 仅 Windows x64、本地 Zed Stable、迁移 41。
+- 仅 Windows x64、本地 Zed Stable、迁移 41–44。
 - 不支持 Preview、Dev、WSL、SSH、远程项目、自定义 `--user-data-dir`。
 - 不恢复窗格、编辑器标签或会话；打开的是项目根目录。
 - 最近历史是 Zed 内部实现，Schema 变化需要重新适配。

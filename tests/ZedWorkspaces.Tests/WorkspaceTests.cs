@@ -21,9 +21,10 @@ public sealed class WorkspaceTests : IDisposable
         command.CommandText = """
             PRAGMA journal_mode=WAL;
             CREATE TABLE migrations(domain TEXT, step INTEGER, migration TEXT);
-            INSERT INTO migrations VALUES('WorkspaceDb',41,'fixture');
+            INSERT INTO migrations VALUES('WorkspaceDb',44,'fixture');
             CREATE TABLE workspaces(workspace_id INTEGER PRIMARY KEY, paths TEXT, paths_order TEXT,
-                remote_connection_id INTEGER, timestamp TEXT NOT NULL, identity_paths TEXT, identity_paths_order TEXT);
+                remote_connection_id INTEGER, timestamp TEXT NOT NULL, identity_paths TEXT, identity_paths_order TEXT,
+                path_style TEXT);
             """;
         command.ExecuteNonQuery();
         return connection;
@@ -91,8 +92,10 @@ public sealed class WorkspaceTests : IDisposable
         using var writer = CreateDatabase(); var a = Folder("valid");
         Insert(writer, 1, a, "0", "2026-10-01 00:00:00");
         Assert.Single(api.GetWorkspaces());
-        using var command = writer.CreateCommand(); command.CommandText = "UPDATE migrations SET step=42"; command.ExecuteNonQuery();
+        using var command = writer.CreateCommand(); command.CommandText = "UPDATE migrations SET step=45"; command.ExecuteNonQuery();
         Assert.Empty(api.GetWorkspaces());
+        command.CommandText = "UPDATE migrations SET step=41"; command.ExecuteNonQuery();
+        Assert.Single(api.GetWorkspaces());
         command.CommandText = "DROP TABLE workspaces"; command.ExecuteNonQuery();
         Assert.Empty(api.GetWorkspaces());
         Assert.True(messages.Count >= 3);

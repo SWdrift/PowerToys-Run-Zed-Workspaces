@@ -11,9 +11,12 @@ namespace Community.PowerToys.Run.Plugin.ZedWorkspaces;
 
 public sealed class ZedWorkspacesApi
 {
-    // Zed c4273271092b0287f7d181f616bd5171e0a2f70c uses zero-based
-    // domain migrations, not PRAGMA user_version, to version its workspace schema.
-    private const long SupportedWorkspaceMigration = 41;
+    // Zed 610ea4b8de1c6e887f03563f067278002f41256e (Stable 1.30.2) uses
+    // zero-based domain migrations, not PRAGMA user_version, to version its
+    // workspace schema. Migrations 42-44 add path_style and trust tables; the
+    // workspace columns read below are unchanged, so 41-44 are compatible.
+    private const long OldestSupportedWorkspaceMigration = 41;
+    private const long NewestSupportedWorkspaceMigration = 44;
 
     private static readonly (string Name, string Type)[] WorkspaceColumns =
     [
@@ -216,10 +219,10 @@ public sealed class ZedWorkspacesApi
             return false;
         }
 
-        if (migration != SupportedWorkspaceMigration)
+        if (migration < OldestSupportedWorkspaceMigration || migration > NewestSupportedWorkspaceMigration)
         {
-            var age = migration > SupportedWorkspaceMigration ? "newer" : "older";
-            Report($"Zed WorkspaceDb migration {migration} is {age} than supported migration {SupportedWorkspaceMigration}; the database will not be read.");
+            var age = migration > NewestSupportedWorkspaceMigration ? "newer" : "older";
+            Report($"Zed WorkspaceDb migration {migration} is {age} than supported migrations {OldestSupportedWorkspaceMigration}-{NewestSupportedWorkspaceMigration}; the database will not be read.");
             return false;
         }
 

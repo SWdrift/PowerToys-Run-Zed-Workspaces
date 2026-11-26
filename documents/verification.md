@@ -9,6 +9,7 @@
 | 2026-10-30 | 构建 Release 包，安装到本机 PowerToys 并完成界面、启动和快捷操作验证 |
 | 2026-10-30 | 增加中文 README |
 | 2026-10-30 | 精简两份 README；实现细节与验证记录移入 `documents/` |
+| 2026-11-26 | 适配 Zed 1.30.2 的 WorkspaceDb 迁移 44（兼容 41–44） |
 
 ## 自动化测试
 
@@ -19,6 +20,8 @@ dotnet test ./tests/ZedWorkspaces.Tests/ZedWorkspaces.Tests.csproj -c Release
 ```
 
 结果：**9 项通过，0 失败**。
+
+2026-11-26 复测：迁移 44 夹具与 41 兼容性边界通过，**9 项通过，0 失败**。
 
 | 覆盖点 | 验证内容 |
 | --- | --- |
@@ -38,7 +41,7 @@ dotnet test ./tests/ZedWorkspaces.Tests/ZedWorkspaces.Tests.csproj -c Release
 
 ## 本机实测
 
-环境：PowerToys 0.102.3（.NET 10），Zed Stable 1.26.2，Windows 11 x64。
+环境：PowerToys 0.102.3101.0（.NET 10），Zed Stable 1.30.2，Windows 11 x64。
 
 | 场景 | 结果 |
 | --- | --- |
@@ -53,6 +56,7 @@ dotnet test ./tests/ZedWorkspaces.Tests/ZedWorkspaces.Tests.csproj -c Release
 | 多根启动 | 两个含中文、空格、`&`、`%`、`#`、单引号的根作为同一工作区打开 |
 | 历史刷新 | 关闭 Zed 再打开另一项目后，新查询反映最新顺序，无需重启 PowerToys |
 | 安装/卸载脚本 | 均成功执行，重装后插件正常加载 |
+| 迁移 44 | Zed 升级到 1.30.2 后，`z ` 正常显示 29 个现存工作区，PowerToys 日志无 Schema 兼容性告警 |
 
 界面验证使用真实 PowerToys Run 窗口完成，不只检查编译结果。
 
